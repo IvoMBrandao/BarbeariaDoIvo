@@ -1,14 +1,3 @@
-/*
-    TAG (button, body, input)
-
-    Classe (.titulo .grupo)
-
-    Id (#btn-entrar)
-
-    Seletor (Tudo junto e misturado)
-
-*/
-
 
 
 .grupo {
@@ -23,6 +12,8 @@
     margin-top: 70px;
     padding: 20px;
     border-radius: 5px;
+    box-shadow: 10px 40px 25px rgba(175, 32, 32, 0.1);
+    
 }
 
 .titulo-login{
