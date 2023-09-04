@@ -2,3 +2,6 @@
     width: 100%;
     --bs-gutter-x: none;
 }
+.login{
+    margin-left:auto;
+}
