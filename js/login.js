@@ -10,11 +10,21 @@ buttonLogin.addEventListener('click', () => {
     if(!userEmail || !userSenha){
       
       alert('login e senha obrigatorios')
-
-      
         return;
     }
 
- 
+   autenticar(userEmail,userSenha)
+
+ window.open('usuario.html', '_selfe')
    
-})
+});
+
+function autenticar(email,senha){
+ const url=`http://localhost:3400`;
+ fetch(`${url}/login`,{
+  method:'POST',
+  body: JSON.stringify({email,senha})
+ }).then(response => response.json())
+ .then(response => console.log(response))
+ .catch(erro = console.log(erro))
+}
