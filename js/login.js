@@ -1,22 +1,31 @@
-let email = document.getElementById("email")
-let senha = document.getElementById("senha")
-let buttonLogin= document.getElementById("btn-entrar")
+// Capturando os 3 campos da tela.
+let email = document.getElementById('email');
+let senha = document.getElementById('senha');
+let btnEntrar = document.getElementById('btn-entrar');
 
 
-buttonLogin.addEventListener('click', () => {
-  
-    let userEmail  = email.value;
-    let userSenha= senha.value;
+// Aqui capturo o evento de click para tomar uma ação qualquer
+btnEntrar.addEventListener('click', () => {
+
+    // 1° Pegar o email digitado
+    let userEmail = email.value;
+
+    // 2° Pegar a senha digitada.
+    let userSenha = senha.value;
+
+    // 3° Validar se o email e senha estão corretos
+
     if(!userEmail || !userSenha){
-      
-      alert('login e senha obrigatorios')
+        // 4° Caso esteja incorreto, mandar mensagem de usuario ou senha invalida.
+       alert('erro')
+        // alert("Os campos de e-mail e senha são obrigatórios!");
         return;
     }
 
-   autenticar(userEmail,userSenha)
-
-   
+    // Aqui precisamos enviar esse email e senha ao backend para saber se o usuario pode acessar o sistema.
+    autenticar(userEmail, userSenha);
 });
+
 
 function autenticar(email, senha){
    const urlBase = `http://localhost:3400`;
@@ -36,14 +45,19 @@ function autenticar(email, senha){
         return;
 
        }else{
-        
-        
-       
 
+        
+        salvarToken(response.token);
+        salvarUsuario(response.usuario);
+        
+        // Aqui vou esconder a tela de login e carregar o loading..
       
             window.open('usuario.html', '_self');
-    
+
         
        }
     });
 }
+
+
+
