@@ -28,16 +28,21 @@ btnAdicionar.addEventListener('click', () =>{
 });
 
 btnSalvar.addEventListener('click', () => {
-  
+    // 1° Capturar os dados do modal
     let cliente = obterClienteDoModal();
 
-   
+    // 2° Se os campos obrigatorios foram preenchidos.
     if(!cliente.cpfOuCnpj || !cliente.email){
         alert("E-mail e CPF são obrigatórios.")
         return;
     }
 
-    
+    // if(modoEdicao){
+    //     atualizarClienteBackEnd(cliente);
+    // }else{
+    //     adicionarClienteBackEnd(cliente);
+    // }
+
     (modoEdicao) ? atualizarClienteBackEnd(cliente) : adicionarClienteBackEnd(cliente);
 
 });
@@ -118,9 +123,10 @@ function excluirCliente(id){
 }
 
 function criarLinhaNaTabela(cliente) {
-   
+    // 1° Criar uma linha da tabela OK
     let tr = document.createElement('tr');
 
+    // 2° Criar as TDs OK
     let tdId = document.createElement('td');
     let tdNome = document.createElement('td');
     let tdCPF = document.createElement('td');
@@ -130,7 +136,7 @@ function criarLinhaNaTabela(cliente) {
     let tdAcoes = document.createElement('td');
 
 
-
+    // 3° Atualizar as Tds com os valores do cliente OK
     tdId.textContent = cliente.id;
     tdNome.textContent = cliente.nome;
     tdCPF.textContent = cliente.cpfOuCnpj;
@@ -147,7 +153,7 @@ function criarLinhaNaTabela(cliente) {
 
 
 
-    
+    // 4° Adicionar as TDs dentro da linha criei. OK
     tr.appendChild(tdId);
     tr.appendChild(tdNome);
     tr.appendChild(tdCPF);
@@ -156,13 +162,13 @@ function criarLinhaNaTabela(cliente) {
     tr.appendChild(tdDataCadastro);
     tr.appendChild(tdAcoes);
 
-   
+    // 5° Adicionar a linha na tabela.
     tabelaCliente.appendChild(tr);
 }
 
 function popularTabela(clientes) {
 
-   
+    // Limpar a tabela...
     tabelaCliente.textContent = "";
 
     clientes.forEach(cliente => {

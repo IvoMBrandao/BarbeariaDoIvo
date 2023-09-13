@@ -1,29 +1,45 @@
 // Capturando os 3 campos da tela.
-let email = document.getElementById('email');
-let senha = document.getElementById('senha');
+let email = document.getElementById('typeEmailX');
+let senha = document.getElementById('typePasswordX');
 let btnEntrar = document.getElementById('btn-entrar');
+let login = document.getElementById('login');
+let logout = document.getElementById('logout-button');
 
+function autentica(){
+     // 1° Pegar o email digitado
+     let userEmail = email.value;
+
+     // 2° Pegar a senha digitada.
+     let userSenha = senha.value;
+ 
+     // 3° Validar se o email e senha estão corretos
+ 
+     if(!userEmail || !userSenha){
+         // 4° Caso esteja incorreto, mandar mensagem de usuario ou senha invalida.
+        alert('Os campos de e-mail e senha são obrigatórios!')
+         // alert("Os campos de e-mail e senha são obrigatórios!");
+         return;
+     }
+     login.style.display = 'none';
+     logout.style.display = 'block';
+     // Aqui precisamos enviar esse email e senha ao backend para saber se o usuario pode acessar o sistema.
+     autenticar(userEmail, userSenha);
+}
+
+document.addEventListener("keydown", function(event) {
+    // Verifica se a tecla pressionada é a tecla "Enter" (código 13)
+    if (event.key === "Enter") {
+       
+       autentica();
+       return;
+    }
+});
 
 // Aqui capturo o evento de click para tomar uma ação qualquer
-btnEntrar.addEventListener('click', () => {
-
-    // 1° Pegar o email digitado
-    let userEmail = email.value;
-
-    // 2° Pegar a senha digitada.
-    let userSenha = senha.value;
-
-    // 3° Validar se o email e senha estão corretos
-
-    if(!userEmail || !userSenha){
-        // 4° Caso esteja incorreto, mandar mensagem de usuario ou senha invalida.
-       alert('erro')
-        // alert("Os campos de e-mail e senha são obrigatórios!");
-        return;
-    }
-
-    // Aqui precisamos enviar esse email e senha ao backend para saber se o usuario pode acessar o sistema.
-    autenticar(userEmail, userSenha);
+btnEntrar.addEventListener('click',function(event) {
+    autentica();
+    return;
+   
 });
 
 
@@ -49,15 +65,16 @@ function autenticar(email, senha){
         
         salvarToken(response.token);
         salvarUsuario(response.usuario);
+       
         
-        // Aqui vou esconder a tela de login e carregar o loading..
+        
       
-            window.open('usuario.html', '_self');
-
-        
+         window.open('usuario.html', '_self'); 
        }
     });
 }
+
+
 
 
 

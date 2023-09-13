@@ -47,7 +47,7 @@
       <div class="contatoform d-flex justify-content-center align-items-center">
   
      
-      <form action="/action_page.php">
+      <form action="#" onclick=adicionarClienteBackEnd>
         <div class="mb-3 mt-3">
           <label for="email" class="form-label">Email:</label>
           <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
@@ -56,10 +56,21 @@
           <label for="pwd" class="form-label">Nome:</label>
           <input type="text" class="form-control" id="pwd" placeholder="Enter nome" name="pswd">
         </div>
-        <label for="comment">Comments:</label>
+        <div class="mb-3">
+          <label for="pwd" class="form-label">CPF:</label>
+          <input type="text" class="form-control" id="pwd" placeholder="Enter CPF" name="pswd">
+        </div>
+        <div class="mb-3">
+          <label for="pwd" class="form-label">Telefone:</label>
+          <input type="number" class="form-control" id="pwd" placeholder="Enter Telefone" name="pswd">
+        </div>
+        <label for="comment">Comentários:</label>
         <textarea class="form-control" rows="5" id="comment" name="text"></textarea>  
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button  id="btn-salvar" class="btn btn-primary btn-sm">Salvar</button>  
       </form>
     </div>
+    <script src="./js/base.js"></script>
+    <script src="./js/model/Cliente.js"></script>
+    <script src="./js/clientes.js"></script>
 </body>
 </html>
