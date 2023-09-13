@@ -1,9 +1,27 @@
-// Capturando os 3 campos da tela.
+
 let email = document.getElementById('typeEmailX');
 let senha = document.getElementById('typePasswordX');
 let btnEntrar = document.getElementById('btn-entrar');
-let login = document.getElementById('login');
-let logout = document.getElementById('logout-button');
+let loginButton = document.getElementById("login");
+let logoutButton = document.getElementById("logout-button");
+
+let isLoggedIn = false;
+
+function toggleLogin() {
+    isLoggedIn = !isLoggedIn;
+    
+   if (isLoggedIn) {
+    // Se o usuário estiver logado, exibe o botão de logout e oculta o botão de login
+    loginButton.style.display = "none";
+    logoutButton.style.display = "block";
+  } else {
+    // Se o usuário não estiver logado, exibe o botão de login e oculta o botão de logout
+    loginButton.style.display = "block";
+    logoutButton.style.display = "none";
+  }
+}
+
+
 
 function autentica(){
      // 1° Pegar o email digitado
@@ -20,10 +38,12 @@ function autentica(){
          // alert("Os campos de e-mail e senha são obrigatórios!");
          return;
      }
-     login.style.display = 'none';
-     logout.style.display = 'block';
+    
      // Aqui precisamos enviar esse email e senha ao backend para saber se o usuario pode acessar o sistema.
      autenticar(userEmail, userSenha);
+     toggleLogin()
+
+     
 }
 
 document.addEventListener("keydown", function(event) {

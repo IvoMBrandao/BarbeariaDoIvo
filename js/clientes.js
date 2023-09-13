@@ -11,6 +11,8 @@ let tituloModal = document.querySelector('h4.modal-title');
 let btnSalvar = document.getElementById('btn-salvar');
 let btnCancelar = document.getElementById('btn-cancelar');
 
+
+
 let formModal = {
     id: document.getElementById('id'),
     nome: document.getElementById('nome'),
@@ -26,6 +28,10 @@ btnAdicionar.addEventListener('click', () =>{
     limparModalCliente();
     modalCliente.show();
 });
+
+
+
+
 
 btnSalvar.addEventListener('click', () => {
     // 1° Capturar os dados do modal
