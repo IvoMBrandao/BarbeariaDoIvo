@@ -5,21 +5,7 @@ let btnEntrar = document.getElementById('btn-entrar');
 let loginButton = document.getElementById("login");
 let logoutButton = document.getElementById("logout-button");
 
-let isLoggedIn = false;
 
-function toggleLogin() {
-    isLoggedIn = !isLoggedIn;
-    
-   if (isLoggedIn) {
-    // Se o usuário estiver logado, exibe o botão de logout e oculta o botão de login
-    loginButton.style.display = "none";
-    logoutButton.style.display = "block";
-  } else {
-    // Se o usuário não estiver logado, exibe o botão de login e oculta o botão de logout
-    loginButton.style.display = "block";
-    logoutButton.style.display = "none";
-  }
-}
 
 
 
@@ -41,7 +27,7 @@ function autentica(){
     
      // Aqui precisamos enviar esse email e senha ao backend para saber se o usuario pode acessar o sistema.
      autenticar(userEmail, userSenha);
-     toggleLogin()
+   
 
      
 }
@@ -62,6 +48,18 @@ btnEntrar.addEventListener('click',function(event) {
    
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const passwordInput = document.getElementById("typePasswordX");
+    const togglePasswordButton = document.querySelector(".toggle-password");
+
+    togglePasswordButton.addEventListener("click", function () {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    });
+  });
 
 function autenticar(email, senha){
    const urlBase = `http://localhost:3400`;

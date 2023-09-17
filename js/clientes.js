@@ -43,11 +43,7 @@ btnSalvar.addEventListener('click', () => {
         return;
     }
 
-    // if(modoEdicao){
-    //     atualizarClienteBackEnd(cliente);
-    // }else{
-    //     adicionarClienteBackEnd(cliente);
-    // }
+    
 
     (modoEdicao) ? atualizarClienteBackEnd(cliente) : adicionarClienteBackEnd(cliente);
 
@@ -149,15 +145,14 @@ function criarLinhaNaTabela(cliente) {
     tdEmail.textContent = cliente.email;
     tdDataCadastro.textContent = new Date(cliente.dataCadastro).toLocaleDateString();
     tdTelefone.textContent = cliente.telefone;
-
-    tdAcoes.innerHTML = `<button onclick="editarCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-                             Editar
-                         </button>
-                         <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-                             Excluir
-                         </button>`;
-
-
+    tdAcoes.innerHTML = `
+    <button onclick="editarCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
+        <i class="fas fa-edit"></i> <!-- Ícone de edição -->
+    </button>
+    <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
+        <i class="fas fa-trash"></i> <!-- Ícone de exclusão -->
+    </button>
+`;
 
     // 4° Adicionar as TDs dentro da linha criei. OK
     tr.appendChild(tdId);

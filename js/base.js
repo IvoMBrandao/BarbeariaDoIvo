@@ -5,6 +5,11 @@ function salvarToken(token){
 
 function salvarUsuario(usuario){
     localStorage.setItem('usuario', JSON.stringify(usuario));
+    
+}
+function salvarServices(service){
+    localStorage.setItem('produtos', JSON.stringify(service));
+    
 }
 
 function obterToken(){
