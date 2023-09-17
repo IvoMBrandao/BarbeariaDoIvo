@@ -135,14 +135,14 @@ function criarLinhaNaTabela(servico) {
     tdDataCadastro.textContent = new Date(servico.dataCadastro).toLocaleDateString();
     
 
-    tdAcoes.innerHTML = `<button onclick="editarServico(${servico.id})" class="btn btn-outline-primary btn-sm mr-3">
-                             Editar
-                         </button>
+    tdAcoes.innerHTML = `
+                        <button onclick="editarServico(${servico.id})" class="btn btn-outline-primary btn-sm mr-3">
+                         <i class="fas fa-edit"></i> <!-- Ícone de edição -->
+                       </button>
                          <button onclick="excluirservico(${servico.id})" class="btn btn-outline-primary btn-sm mr-3">
-                             Excluir
-                         </button>`;
-
-
+                         <i class="fas fa-trash"></i> <!-- Ícone de exclusão -->
+                          </button>
+                     `;
 
     // 4° Adicionar as TDs dentro da linha criei. OK
     tr.appendChild(tdId);
@@ -187,7 +187,7 @@ function adicionarServicoBackEnd(servico){
 
         modalServico.hide();
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'Cliente cadastrado com sucesso!',
             showConfirmButton: false,
@@ -216,7 +216,7 @@ function atualizarClienteBackEnd(servico){
         modalServico.hide();
 
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'Cliente atualizado com sucesso!',
             showConfirmButton: false,
@@ -247,7 +247,7 @@ function excluirServicoBackEnd(servico) {
         modalServico.hide();
         
         Swal.fire({
-            position: 'top-end',
+             position: 'center',
             icon: 'success',
             title: 'Cliente excluído com sucesso!',
             showConfirmButton: false,
