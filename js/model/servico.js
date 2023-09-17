@@ -11,10 +11,4 @@ class Servico {
         this.dataCadastro = obj.dataCadastro;
     }
 
-    constructor(id, nome, valor, dataCadastro) {
-        this.id = id.id;
-        this.nome = nome.nome;
-        this.valor = valor.valor;
-        this.dataCadastro = dataCadastro.dataCadastro;
-    }
 }
