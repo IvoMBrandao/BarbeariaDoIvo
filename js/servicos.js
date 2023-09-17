@@ -33,13 +33,13 @@ btnSalvar.addEventListener('click', () => {
 
  
     if(!servico.nome || !servico.valor){
-        alert("E-mail e CPF são obrigatórios.")
+        alert("Nome e Valor são obrigatórios.")
         return;
     }
 
     
 
-    (modoEdicao) ? atualizarClienteBackEnd(servico) : adicionarClienteBackEnd(servico);
+    (modoEdicao) ? atualizarClienteBackEnd(servico) :  adicionarServicoBackEnd(servico);
 
 });
 
@@ -105,12 +105,12 @@ function limparModalCliente(){
     formModal.dataCadastro.value = "";
 }
 
-function excluirCliente(id){
+function excluirservico(id){
 
     let servico = listaServicos.find(c => c.id == id);
 
     if(confirm("Deseja realmente excluir o cliente " + servico.nome)){
-        excluirClienteBackEnd(servico);
+        excluirServicoBackEnd(servico);
        
     }
     popularTabela(listaServicos);
@@ -138,7 +138,7 @@ function criarLinhaNaTabela(servico) {
     tdAcoes.innerHTML = `<button onclick="editarServico(${servico.id})" class="btn btn-outline-primary btn-sm mr-3">
                              Editar
                          </button>
-                         <button onclick="excluirCliente(${servico.id})" class="btn btn-outline-primary btn-sm mr-3">
+                         <button onclick="excluirservico(${servico.id})" class="btn btn-outline-primary btn-sm mr-3">
                              Excluir
                          </button>`;
 
@@ -165,7 +165,7 @@ function popularTabela(servico) {
     });
 }
 
-function adicionarClienteBackEnd(servico){
+function adicionarServicoBackEnd(servico){
 
     servico.dataCadastro = new Date().toISOString();
 
@@ -212,7 +212,7 @@ function atualizarClienteBackEnd(servico){
     })
     .then(response => response.json())
     .then(() => {
-        atualizarClienteNaLista(servico, false);
+        atualizarServicoNaLista(servico, false);
         modalServico.hide();
 
         Swal.fire({
@@ -228,8 +228,7 @@ function atualizarClienteBackEnd(servico){
     })
 }
 
-function excluirClienteBackEnd(servico){
-
+function excluirServicoBackEnd(servico) {
     fetch(`${URL}/${servico.id}`, {
         method: "DELETE",
         headers: {
@@ -237,25 +236,30 @@ function excluirClienteBackEnd(servico){
             'Authorization': obterToken()
         }
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Não foi possível excluir o cliente.');
+        }
+        return response.text();
+    })
     .then(() => {
-        atualizarClienteNaLista(servico, true);
+        atualizarServicoNaLista(servico, true);
         modalServico.hide();
         
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Cliente excluido com sucesso!',
+            title: 'Cliente excluído com sucesso!',
             showConfirmButton: false,
             timer: 2500
         });
     })
     .catch(error => {
-        console.log(error)
-    })
+        console.error(error);
+    });
 }
 
-function atualizarClienteNaLista(servico, removerServicos){
+function atualizarServicoNaLista(servico, removerServicos){
 
     let indice = listaServicos.findIndex((c) => c.id == servico.id);
 
