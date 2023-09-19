@@ -117,10 +117,10 @@ function excluirservico(id){
 }
 
 function criarLinhaNaTabela(servico) {
-    // 1° Criar uma linha da tabela OK
+
     let tr = document.createElement('tr');
 
-    // 2° Criar as TDs OK
+   
     let tdId = document.createElement('td');
     let tdNome = document.createElement('td');
     let tdValor = document.createElement('td');
@@ -128,7 +128,7 @@ function criarLinhaNaTabela(servico) {
     let tdAcoes = document.createElement('td');
 
 
-    // 3° Atualizar as Tds com os valores do cliente OK
+   
     tdId.textContent = servico.id;
     tdNome.textContent = servico.nome;
     tdValor.textContent= servico.valor;
@@ -144,20 +144,19 @@ function criarLinhaNaTabela(servico) {
                           </button>
                      `;
 
-    // 4° Adicionar as TDs dentro da linha criei. OK
+    
     tr.appendChild(tdId);
     tr.appendChild(tdNome);
     tr.appendChild(tdValor);
     tr.appendChild(tdDataCadastro);
     tr.appendChild(tdAcoes);
 
-    // 5° Adicionar a linha na tabela.
+ 
     tabelaServico.appendChild(tr);
 }
 
 function popularTabela(servico) {
 
-    // Limpar a tabela...
     tabelaServico.textContent = "";
 
     servico.forEach(servico => {
