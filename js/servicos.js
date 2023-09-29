@@ -22,8 +22,8 @@ let formModal = {
 
 btnAdicionar.addEventListener('click', () =>{
     modoEdicao = false;
-    tituloModal.textContent = "Adicionar cliente"
-    limparModalCliente();
+    tituloModal.textContent = "Adicionar Produto"
+    limparModalProduto();
     modalServico.show();
 });
 
@@ -39,7 +39,7 @@ btnSalvar.addEventListener('click', () => {
 
     
 
-    (modoEdicao) ? atualizarClienteBackEnd(servico) :  adicionarServicoBackEnd(servico);
+    (modoEdicao) ? atualizarProdutoBackEnd(servico) :  adicionarServicoBackEnd(servico);
 
 });
 
@@ -61,7 +61,7 @@ function obterServicoDoModal(){
     
 }
  
-function obterClientes() {
+function obterProduto() {
 
     fetch(URL, {
         method: 'GET',
@@ -79,17 +79,17 @@ function obterClientes() {
 
 function editarServico(id){
     modoEdicao = true;
-    tituloModal.textContent = "Editar cliente"
+    tituloModal.textContent = "Editar Produto"
 
     let servico = listaServicos.find(servicos => servicos.id == id);//talvez
     
-    atualizarModalCliente(servico);
+    atualizarModalProduto(servico);
    
     modalServico.show();
 
 }
 
-function atualizarModalCliente(servico){
+function atualizarModalProduto(servico){
 
     formModal.id.value = servico.id;
     formModal.nome.value = servico.nome;
@@ -97,7 +97,7 @@ function atualizarModalCliente(servico){
     formModal.dataCadastro.value = servico.dataCadastro.substring(0,10);
 }
 
-function limparModalCliente(){
+function limparModalProduto(){
 
     formModal.id.value ="";
     formModal.nome.value = "";
@@ -109,7 +109,7 @@ function excluirservico(id){
 
     let servico = listaServicos.find(c => c.id == id);
 
-    if(confirm("Deseja realmente excluir o cliente " + servico.nome)){
+    if(confirm("Deseja realmente excluir o Produto " + servico.nome)){
         excluirServicoBackEnd(servico);
        
     }
@@ -188,7 +188,7 @@ function adicionarServicoBackEnd(servico){
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Cliente cadastrado com sucesso!',
+            title: 'Produto cadastrado com sucesso!',
             showConfirmButton: false,
             timer: 2500
         });
@@ -199,7 +199,7 @@ function adicionarServicoBackEnd(servico){
 }
 
 
-function atualizarClienteBackEnd(servico){
+function atualizarProdutoBackEnd(servico){
 
     fetch(`${URL}/${servico.id}`, {
         method: "PUT",
@@ -217,7 +217,7 @@ function atualizarClienteBackEnd(servico){
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Cliente atualizado com sucesso!',
+            title: 'Produto atualizado com sucesso!',
             showConfirmButton: false,
             timer: 2500
         });
@@ -237,7 +237,7 @@ function excluirServicoBackEnd(servico) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Não foi possível excluir o cliente.');
+            throw new Error('Não foi possível excluir o Produto.');
         }
         return response.text();
     })
@@ -248,7 +248,7 @@ function excluirServicoBackEnd(servico) {
         Swal.fire({
              position: 'center',
             icon: 'success',
-            title: 'Cliente excluído com sucesso!',
+            title: 'Produto excluído com sucesso!',
             showConfirmButton: false,
             timer: 2500
         });
@@ -270,4 +270,4 @@ function atualizarServicoNaLista(servico, removerServicos){
     
 }
 
-obterClientes();
+obterProduto();

@@ -199,7 +199,7 @@ function adicionarClienteBackEnd(cliente){
 
         modalCliente.hide();
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'Cliente cadastrado com sucesso!',
             showConfirmButton: false,
@@ -228,7 +228,7 @@ function atualizarClienteBackEnd(cliente){
         modalCliente.hide();
 
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'Cliente atualizado com sucesso!',
             showConfirmButton: false,
@@ -254,7 +254,7 @@ function excluirClienteBackEnd(cliente){
         atualizarClienteNaLista(cliente, true);
         modalCliente.hide();
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'Cliente excluido com sucesso!',
             showConfirmButton: false,
